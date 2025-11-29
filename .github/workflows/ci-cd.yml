@@ -12,7 +12,7 @@ env:
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     permissions:
       contents: read
       packages: write
@@ -54,7 +54,7 @@ jobs:
 
   deploy:
     needs: build-and-test
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     if: github.ref == 'refs/heads/main'
 
     steps:
@@ -68,8 +68,7 @@ jobs:
 
       - name: Configure kubectl
         run: |
-          mkdir -p $HOME/.kube
-          echo "${{ secrets.KUBE_CONFIG }}" | base64 -d > $HOME/.kube/config
+          kubectl config current-context
 
       - name: Update image tag in k8s manifests
         run: |
