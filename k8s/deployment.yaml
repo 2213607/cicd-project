@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: myapp
-        image: ghcr.io/2213607/cicd-project:IMAGE_TAG
+        image: docker.io/seobeen624/cicd-project:IMAGE_TAG
         ports:
         - containerPort: 80
         resources:
